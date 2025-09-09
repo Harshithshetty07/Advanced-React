@@ -3,6 +3,8 @@ import User from './User'
 import UserClass from './UserClass'
 
 function About() {
+
+
   return (
     <h1>
       About
