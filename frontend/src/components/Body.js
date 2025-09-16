@@ -2,6 +2,7 @@ import RestaurantCard from "./RestauantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     const [restaurants, setRestaurants] = useState([]);
@@ -44,6 +45,12 @@ const Body = () => {
             // Keep using mock data on error
         }
     }
+
+const onlineStatus = useOnlineStatus();
+
+if(onlineStatus === false) return <h1>Looks like you're offline!! Please check your internet Connection</h1>
+
+
     if (restaurants.length === 0) {
         return <Shimmer />
     }
