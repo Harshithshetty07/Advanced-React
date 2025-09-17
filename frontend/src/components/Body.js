@@ -70,7 +70,7 @@ if(onlineStatus === false) return <h1>Looks like you're offline!! Please check y
                 </div>
 
 
-                <button className="filter-btn" 
+                <button className="text-center text-red-500  border-2 p-2 border-slate-900" 
                 onClick={() => {
                     // Make sure restaurants is an array before filtering
                     if (Array.isArray(restaurants)) {
