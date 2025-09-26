@@ -1,40 +1,38 @@
-import React from "react";
+import User from "./User";
+import UserClass from "./UserClass";
+import { Component } from "react";
+import UserContext from "../utils/UserContext";
 
-class UserClass extends React.Component{
-    constructor(props) {
-        super(props);
+class About extends Component {
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            count: 0
-        }
-        console.log('Child CONSTRUCTOR')
-    }
+    //console.log("Parent Constructor");
+  }
 
-    componentDidMount() {
-                console.log('Child COMPONENTDIDMOUNT')
+  componentDidMount() {
+    //console.log("Parent Component Did Mount");
+  }
 
-    }
+  render() {
+    //console.log("Parent Render");
 
-    
-    
-    render() {
-        const {name} = this.props;
-        const {count} = this.state
-        return (
-         <div className="user-card">
-        <h2>Name: {name}</h2>
-        <h2>Count: {count}
-            
-        </h2>
-        <button onClick={() => {
-            this.setState({
-                count: this.state.count + 1
-            })
-        }}>Click</button>
-        <h3>Location: Bengaluru</h3>
-        <h4>Contact: @rakshithshetty18</h4>
-    </div>
-    )}
+    return (
+      <div>
+        <h1>About Class Component</h1>
+        <div>
+          LoggedIn User
+          <UserContext.Consumer>
+            {({ loggedInUser }) => (
+              <h1 className="text-xl font-bold">{loggedInUser}</h1>
+            )}
+          </UserContext.Consumer>
+        </div>
+        <h2>This is Namaste React Web Series</h2>
+        <UserClass name={"First"} location={"Dehradun Class"} />
+      </div>
+    );
+  }
 }
 
-export default UserClass
+export default About;

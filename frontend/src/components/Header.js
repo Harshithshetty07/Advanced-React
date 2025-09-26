@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LOGO_URL } from "../utils/constants"
 import {Link } from 'react-router-dom'
+import UserContext from "../utils/UserContext"
 
 const Header = () => {
     const [btnName, setBtnName] = useState("Login")
+
+    const { loggedInUser} = useContext(UserContext);
 
     useEffect(() => {
         console.log('hello')
@@ -31,6 +34,7 @@ const Header = () => {
                     : setBtnName("Login")
                 }
                 >{btnName}</button>
+                <li className="px-2">{loggedInUser}</li>
             </ul>
             </div>
         </div>
