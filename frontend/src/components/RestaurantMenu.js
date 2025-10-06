@@ -6,46 +6,58 @@ import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-
-  const dummy = "Dummy Data";
-
   const resInfo = useRestaurantMenu(resId);
 
   const [showIndex, setShowIndex] = useState(null);
+  const dummy = "Dummy Data";
 
-  if (resInfo === null) return <Shimmer />;
+  // Show shimmer while data is loading
+  if (!resInfo) return <Shimmer />;
 
-  const { name, cuisines, costForTwoMessage } =
-    resInfo?.cards[0]?.card?.card?.info;
+  // ✅ Dynamically find the card that contains restaurant info
+  const restaurantInfoCard = resInfo?.cards?.find(
+    (card) => card?.card?.card?.info
+  );
 
-  const { itemCards } =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  const { name, cuisines = [], costForTwoMessage = "" } =
+    restaurantInfoCard?.card?.card?.info || {};
 
-  const categories =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-      (c) =>
-        c.card?.["card"]?.["@type"] ===
-        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-    );
-  //console.log(categories);
+  // ✅ Find categories safely
+  const regularCards =
+    resInfo?.cards?.find((c) => c.groupedCard)?.groupedCard?.cardGroupMap
+      ?.REGULAR?.cards || [];
 
+  const categories = regularCards.filter(
+    (c) =>
+      c.card?.["card"]?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
+
+  // ✅ Render UI safely
   return (
     <div className="text-center">
-      <h1 className="font-bold my-6 text-2xl">{name}</h1>
-      <p className="font-bold text-lg">
-        {cuisines.join(", ")} - {costForTwoMessage}
+      <h1 className="font-bold my-6 text-2xl">
+        {name || "Restaurant Name Unavailable"}
+      </h1>
+      <p className="font-bold text-lg text-gray-700">
+        {cuisines.length > 0 ? cuisines.join(", ") : "Cuisines not available"}{" "}
+        - {costForTwoMessage || "Cost info unavailable"}
       </p>
-      {/* categories accordions */}
-      {categories.map((category, index) => (
-        // controlled component
-        <RestaurantCategory
-          key={category?.card?.card.title}
-          data={category?.card?.card}
-          showItems={index === showIndex ? true : false}
-          setShowIndex={() => setShowIndex(index)}
-          dummy={dummy}
-        />
-      ))}
+
+      {/* Category Accordions */}
+      {categories.length > 0 ? (
+        categories.map((category, index) => (
+          <RestaurantCategory
+            key={category?.card?.card?.title || index}
+            data={category?.card?.card}
+            showItems={index === showIndex}
+            setShowIndex={() => setShowIndex(index)}
+            dummy={dummy}
+          />
+        ))
+      ) : (
+        <p className="text-gray-500 mt-4">No categories available</p>
+      )}
     </div>
   );
 };

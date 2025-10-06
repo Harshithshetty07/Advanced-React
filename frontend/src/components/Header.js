@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { LOGO_URL } from "../utils/constants"
 import {Link } from 'react-router-dom'
 import UserContext from "../utils/UserContext"
+import { useSelector } from "react-redux"
 
 const Header = () => {
     const [btnName, setBtnName] = useState("Login")
@@ -11,6 +12,11 @@ const Header = () => {
     useEffect(() => {
         console.log('hello')
     }, [])
+
+
+    // Subscribing to the store using a Selector from react-redux
+    const cartItems = useSelector((store) => store.cart.items)
+    console.log(cartItems)
 
     return (
         <div className="header">
@@ -27,7 +33,7 @@ const Header = () => {
                 <li>
                     <Link to="/contact" >Contact Us</Link>
                 </li>
-                <li>Cart</li>
+                <li className="px-4 font-bold text-2xl">Cart - ({cartItems.length} items) </li>
                 <button className="login"
                 onClick={() => btnName === "Login" 
                     ? setBtnName("LogOut") 

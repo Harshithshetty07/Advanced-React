@@ -1,28 +1,51 @@
-import { useState } from "react";
-import ItemList from "./ItemList";
+import { useDispatch } from "react-redux";
+import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 
-const RestaurantCategory = ({ data, showItems, setShowIndex, dummy }) => {
-  const handleClick = () => {
-    setShowIndex();
+const ItemList = ({ items, dummy }) => {
+
+  const dispatch = useDispatch();
+
+  const handleAddItem = (item) => {
+    // Dispatch an action
+    dispatch(addItem("cart"))
   };
+
   return (
     <div>
-      {/* Header */}
-      <div className="w-6/12 mx-auto my-4 bg-gray-50 shadow-lg p-4">
+      {items.map((item) => (
         <div
-          className="flex justify-between cursor-pointer"
-          onClick={handleClick}
+          data-testid="foodItems"
+          key={item.card.info.id}
+          className="p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between"
         >
-          <span className="font-bold text-lg">
-            {data.title} ({data.itemCards.length})
-          </span>
-          <span>⬇️</span>
+          <div className="w-9/12">
+            <div className="py-2">
+              <span>{item.card.info.name}</span>
+              <span>
+                - ₹
+                {item.card.info.price
+                  ? item.card.info.price / 100
+                  : item.card.info.defaultPrice / 100}
+              </span>
+            </div>
+            <p className="text-xs">{item.card.info.description}</p>
+          </div>
+          <div className="w-3/12 p-4">
+            <div className="absolute">
+              <button
+                className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg"
+                onClick={() => handleAddItem(item)}
+              >
+                Add +
+              </button>
+            </div>
+            <img src={CDN_URL + item.card.info.imageId} className="w-full" />
+          </div>
         </div>
-
-        {showItems && <ItemList items={data.itemCards} dummy={dummy} />}
-      </div>
+      ))}
     </div>
   );
 };
 
-export default RestaurantCategory;
+export default ItemList;
