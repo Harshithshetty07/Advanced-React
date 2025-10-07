@@ -33,7 +33,10 @@ const Header = () => {
                 <li>
                     <Link to="/contact" >Contact Us</Link>
                 </li>
-                <li className="px-4 font-bold text-2xl">Cart - ({cartItems.length} items) </li>
+                <li className="px-4 font-bold text-2xl">
+                <Link to="/cart" >Cart - ({cartItems.length} items) </Link>
+
+                </li>
                 <button className="login"
                 onClick={() => btnName === "Login" 
                     ? setBtnName("LogOut") 
