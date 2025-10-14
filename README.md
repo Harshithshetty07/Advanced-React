@@ -12,3 +12,6 @@
  - Install jsdom library
 
  - if write __ in left and  _ _ right is called as a dunder method - (ex: __tests_ _ )
+ -  Install @babel/preset-react - to make JSX work in test cases
+ - Include @babel/preset-react inside my babel config
+ - Install npm i -D @testing-library/jest-dom
