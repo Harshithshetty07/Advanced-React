@@ -1,0 +1,59 @@
+{
+    "id": "160120",
+    "name": "Asha Sweet Center - Since 1951",
+    "cloudinaryImageId": "egm3aym4fa73hst2tv9b",
+    "locality": "Gandhi Bazaar",
+    "areaName": "Basavanagudi",
+    "costForTwo": "₹250 for two",
+    "cuisines": [
+        "Sweets",
+        "Snacks",
+        "Fast Food",
+        "Bakery",
+        "Beverages"
+    ],
+    "avgRating": 4.7,
+    "veg": true,
+    "parentId": "472555",
+    "avgRatingString": "4.7",
+    "totalRatingsString": "5.4K+",
+    "sla": {
+        "deliveryTime": 34,
+        "lastMileTravel": 2.5,
+        "serviceability": "SERVICEABLE",
+        "slaString": "30-35 mins",
+        "lastMileTravelString": "2.5 km",
+        "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+        "nextCloseTime": "2025-10-15 22:00:00",
+        "opened": true
+    },
+    "badges": {},
+    "isOpen": true,
+    "aggregatedDiscountInfoV2": {},
+    "type": "F",
+    "badgesV2": {
+        "entityBadges": {
+            "imageBased": {},
+            "textBased": {},
+            "textExtendedBadges": {}
+        }
+    },
+    "differentiatedUi": {
+        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+        "differentiatedUiMediaDetails": {
+            "lottie": {},
+            "video": {}
+        }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {},
+    "externalRatings": {
+        "aggregatedRating": {
+            "rating": "--"
+        }
+    },
+    "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+}

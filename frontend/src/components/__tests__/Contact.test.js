@@ -2,6 +2,8 @@ import { render, screen } from '@testing-library/react'
 import Contact from '../Contact'
 import '@testing-library/jest-dom'
 
+describe('Contact us page test case', () =>  {
+
 test("Should load contack us component" , () => {
     render(<Contact/>)
 
@@ -21,6 +23,10 @@ test("Should load button inside contact  component" , () => {
     expect(button).toBeInTheDocument();
 });
 
+})
+
+
+
 test("Should input button inside contact  component" , () => {
     render(<Contact/>)
 
@@ -34,7 +40,7 @@ test("Should load 2 input boxes on the contact component" , () => {
     render(<Contact/>)
 
     const inputBoxes = screen.getAllByRole('textbox');
-    console.log(inputBoxes.length)
+    // console.log(inputBoxes.length)
     // console.log(inputBoxes[0])
 
     // Assertion

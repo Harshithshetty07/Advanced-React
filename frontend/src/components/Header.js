@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { LOGO_URL } from "../utils/constants"
-import {Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import UserContext from "../utils/UserContext"
 import { useSelector } from "react-redux"
 
@@ -10,7 +10,7 @@ const Header = () => {
     const { loggedInUser} = useContext(UserContext);
 
     useEffect(() => {
-        console.log('hello')
+        // console.log('hello')
     }, [])
 
 
