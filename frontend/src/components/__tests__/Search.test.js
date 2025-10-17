@@ -61,6 +61,4 @@ test('Should filter Top rated for Res cards', async() => {
     const topRatedAfterFilter = screen.getAllByTestId('resCard')
     expect(topRatedAfterFilter.length).toBe(8);
 
-
-
 })
